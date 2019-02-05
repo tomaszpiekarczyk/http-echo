@@ -12,16 +12,11 @@ app.all('*', (req, res) => {
   res.json({
     service: process.env.SERVICE_NAME || undefined, // Keys with value `undefined` are omitted during JSON serialization
     path: req.path,
-    headers: req.headers,
     method: req.method,
-    body: req.body,
-    cookies: req.cookies,
     hostname: req.hostname,
     ip: req.ip,
-    protocol: req.protocol,
-    query: req.query,
     hostname: os.hostname(),
-    hostip: os.networkInterfaces(),
+    hostip: os.networkInterfaces().eth0[0].address,
   })
 })
 
